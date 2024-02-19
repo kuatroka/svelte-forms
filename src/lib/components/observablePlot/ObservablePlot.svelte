@@ -5,7 +5,7 @@
     let div: HTMLElement;
     
 
-    export let data;
+    // export let data;
 
     export let options: {};
     

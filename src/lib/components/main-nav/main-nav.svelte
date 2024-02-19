@@ -17,12 +17,18 @@
 		Home
 	</a>
 
-	<a
-		href="/playground"
+	<a  href="/observable"
 		class:text-primary={isActive('/')}
-		class="text-sm font-medium transition-colors hover:text-primary {isActive('/playground') ? '' : 'text-muted-foreground'}"
+		class="text-sm font-medium transition-colors hover:text-primary {isActive('/observable') ? '' : 'text-muted-foreground'}"
 	>
-		Playground
+	Observable
+	</a>
+
+	<a  href="/echarts"
+		class:text-primary={isActive('/')}
+		class="text-sm font-medium transition-colors hover:text-primary {isActive('/echarts') ? '' : 'text-muted-foreground'}"
+	>
+	eCharts
 	</a>
 
 

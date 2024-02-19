@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="flex justify-center items-center mt-10">
+    <div>
+
+        <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Charting Playground
+        </h1>
+        
+        <p class="leading-7 [&:not(:first-child)]:mt-6">
+            Use the menu to go to dedicated areas for different charting libraries
+        </p>
+    </div>
+</div>
