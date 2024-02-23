@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button";
 	import { ModeWatcher } from "mode-watcher";
-	import { Sun, Moon } from "lucide-svelte";
 	import { toggleMode } from "mode-watcher";
+	import { Sun, Moon } from "radix-icons-svelte";
 </script>
 
 <ModeWatcher />

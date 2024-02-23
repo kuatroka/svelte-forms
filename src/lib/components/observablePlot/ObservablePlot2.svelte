@@ -10,5 +10,6 @@
 </script>
 
 {#key options}
-    <div use:myplot {...$$restProps}></div>
+    <div use:myplot {...$$restProps} ></div>
 {/key}
+
