@@ -1,10 +1,10 @@
-import { SQLITE_FULL_PATH } from '$env/static/private';
-// import Database from 'better-sqlite3';
-import { Database } from "bun:sqlite";
+import { SQLITE_SHORT_PATH } from '$env/static/private';
+import Database from 'better-sqlite3';
+// import { Database } from "bun:sqlite";
 import type { Totals, Cik, QtrStats } from './types';
 
 // const db = new Database(SQLITE_FULL_PATH, { verbose: console.log, readonly: true }); // remove in prod
-const db = new Database(SQLITE_FULL_PATH, { readonly: true });
+const db = new Database(SQLITE_SHORT_PATH, { readonly: true });
 
 // ### Totals
 export function getTotals(): Totals[] {
@@ -27,7 +27,7 @@ export function getTotals(): Totals[] {
 }
 
 //  ### every quarter and value
-export const getQtrStats = (): QtrStats[] => {
+export const getQtrStats = (quarter?: string): QtrStats[] => {
 	const sql = `
 	SELECT
 	quarter,
@@ -44,12 +44,13 @@ export const getQtrStats = (): QtrStats[] => {
 	is_quarter_completed,
 	ratio_new_stopped_cusips
 	FROM every_qtr_twrr
+	${quarter ? 'WHERE quarter = ?' : ''}
 	ORDER BY quarter
 	`;
 	const stmnt = db.prepare(sql);
-	const rows = stmnt.all();
-	console.log(rows.slice(0, 2));
-	console.log(rows.length);
+	const rows = quarter ? stmnt.all(quarter) : stmnt.all();
+	// console.log(rows.slice(0,1));
+	// console.log(rows.length);
 	return rows as QtrStats[];
 };
 
@@ -79,7 +80,7 @@ export function getCik(
 		LIMIT $limit OFFSET $skip
 	`;
 	const stmnt = db.prepare(sql);
-	const rows = stmnt.all({ $limit: limit, $skip: skip });
+	const rows = stmnt.all({ limit,  skip });
 	console.log(rows.slice(0, 2));
 	console.log(rows.length);
 	return rows as Cik[];

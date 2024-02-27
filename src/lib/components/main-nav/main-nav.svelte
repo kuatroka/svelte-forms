@@ -32,4 +32,12 @@
 	</a>
 
 
+	<a  href="/forms"
+		class:text-primary={isActive('/')}
+		class="text-sm font-medium transition-colors hover:text-primary {isActive('/forms') ? '' : 'text-muted-foreground'}"
+	>
+	forms
+	</a>
+
+
 </nav>
