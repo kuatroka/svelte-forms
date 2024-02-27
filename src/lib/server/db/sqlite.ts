@@ -28,8 +28,7 @@ export function getTotals(): Totals[] {
 
 //  ### every quarter and value
 export const getQtrStats = (quarter?: string): QtrStats[] => {
-	const sql = `
-	SELECT
+	const sql = `SELECT
 	quarter,
 	quarter_end_date,
 	ttl_value_all_ciks_per_qtr,
@@ -49,7 +48,7 @@ export const getQtrStats = (quarter?: string): QtrStats[] => {
 	`;
 	const stmnt = db.prepare(sql);
 	const rows = quarter ? stmnt.all(quarter) : stmnt.all();
-	// console.log(rows.slice(0,1));
+	// console.log(rows.slice(0));
 	// console.log(rows.length);
 	return rows as QtrStats[];
 };
@@ -86,26 +85,26 @@ export function getCik(
 	return rows as Cik[];
 }
 
-// export function getCikDetails(cik?: string, quarter?: string): Cik[] {
-// 	const sql = `
-//     SELECT
-//         cik,
-//         quarter,
-//         ttl_value_per_cik_per_qtr AS value,
-//         num_assets_per_cik_per_qtr AS num_assets,
-//         mean_curr_twrr_per_cik_per_qtr_cons AS curr_twrr,
-//         cum_mean_twrr_per_cik_per_qtr_cons AS cum_twrr
-//     FROM every_cik_qtr_twrr
-//     WHERE ($cik IS NULL OR cik = $cik) AND quarter = ${
-// 			quarter ? '$quarter' : '(SELECT MAX(quarter) FROM every_cik_qtr_twrr)'
-// 		}
-// `;
-// 	const stmnt = db.prepare(sql);
-// 	const rows = stmnt.all({ cik, quarter });
-// 	console.log(rows.slice(0, 2));
-// 	console.log(rows.length);
-// 	return rows as Cik[];
-// }
+export function getCikDetails(cik?: string, quarter?: string): Cik[] {
+	const sql = `
+    SELECT
+        cik,
+        quarter,
+        ttl_value_per_cik_per_qtr AS value,
+        num_assets_per_cik_per_qtr AS num_assets,
+        mean_curr_twrr_per_cik_per_qtr_cons AS curr_twrr,
+        cum_mean_twrr_per_cik_per_qtr_cons AS cum_twrr
+    FROM every_cik_qtr_twrr
+    WHERE ($cik IS NULL OR cik = $cik) AND quarter = ${
+			quarter ? '$quarter' : '(SELECT MAX(quarter) FROM every_cik_qtr_twrr)'
+		}
+`;
+	const stmnt = db.prepare(sql);
+	const rows = stmnt.all({ cik, quarter });
+	console.log(rows.slice(0, 2));
+	console.log(rows.length);
+	return rows as Cik[];
+}
 
 // const sql = `
 // SELECT
