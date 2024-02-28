@@ -18,12 +18,12 @@
 	</a>
 
 
-	<a  href="/api_learning"
+	<!-- <a  href="/api_learning"
 		class:text-primary={isActive('/')}
 		class="text-sm font-medium transition-colors hover:text-primary {isActive('/echarts') ? '' : 'text-muted-foreground'}"
 	>
 	api_learning
-	</a>
+	</a> -->
 
 
 	<a  href="/forms"
