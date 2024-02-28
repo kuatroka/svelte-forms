@@ -19,6 +19,8 @@
     
     
     export let data;
+
+    $: ({totals } = data);
     let aapl = data.aapl;
     let goog = data.goog;
     let congress = data.congress;
@@ -191,8 +193,8 @@
 
 </script>
 <!-- {f.scale('color')} -->
-<!-- <code class="text-2xl">duckdb</code>
-<pre>{JSON.stringify(aapl.slice(0, 1), null, 2)}</pre> -->
+<!-- <code class="text-2xl">duckdb</code> -->
+<!-- <pre>{JSON.stringify(totals.slice(0, 1), null, 2)}</pre> -->
 
 
 

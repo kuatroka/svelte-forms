@@ -1,11 +1,8 @@
-import * as aq from 'arquero';
-import pl from 'nodejs-polars';
+// import * as aq from 'arquero';
+// import pl from 'nodejs-polars';
 import duckdb from 'duckdb';
 import { Database } from 'duckdb-async';
-import { read } from '$app/server';
-
-// const f = read('/static/data/aapl.csv');
-// console.log(f);
+import { getTotals } from '$lib/server/db/sqlite';
 
 // duckdb-async
 async function seattle_csv_async() {
@@ -131,16 +128,16 @@ export async function load({ fetch }) {
 	// console.log(rows[0]);
 
 	// Use Arquero to read the CSV data
-	const start2 = performance.now();
-	const aaplData = (await aq.loadCSV('./static/data/aapl.csv', { header: true })).objects();
-	const end2 = performance.now();
-	console.log(`Time to load: arquero -  ${end2 - start2} milliseconds`);
+	// const start2 = performance.now();
+	// const aaplData = (await aq.loadCSV('./static/data/aapl.csv', { header: true })).objects();
+	// const end2 = performance.now();
+	// console.log(`Time to load: arquero -  ${end2 - start2} milliseconds`);
 
-	//  polars and csv
-	const start = performance.now();
-	const aaplDataPolars = pl.readCSV('./static/data/aapl.csv').toRecords();
-	const end = performance.now();
-	console.log(`Time to load: polars - ${end - start} milliseconds`);
+	// //  polars and csv
+	// const start = performance.now();
+	// const aaplDataPolars = pl.readCSV('./static/data/aapl.csv').toRecords();
+	// const end = performance.now();
+	// console.log(`Time to load: polars - ${end - start} milliseconds`);
 
 	// polars 2
 	// const start3 = performance.now();
@@ -153,16 +150,16 @@ export async function load({ fetch }) {
 	const csvGOOGpath = '/data/goog.csv'; // Adjust the path as necessary
 	const responseGOOG = await fetch(csvGOOGpath);
 	const csvGOOG = await responseGOOG.text();
-	const googData = aq.fromCSV(csvGOOG).objects();
+	// const googData = aq.fromCSV(csvGOOG).objects();
 	// console.log(googData.slice(0, 5));
 
 	return {
 		congress,
 		// aapl,
 		// goog,
-		aaplData,
-		googData,
-		aaplDataPolars,
+		// aaplData,
+		// googData,
+		// aaplDataPolars,
 		// rows: await get_aapl_csv(),
 		aapl: await get_aapl_csv_async(),
 		goog: await get_goog_csv_async(),
@@ -171,6 +168,7 @@ export async function load({ fetch }) {
 		gistemp: await get_gistemp_csv_async(),
 		bls: await bls_csv_async(),
 		traffic: await traffic_csv_async(),
-		seattle: await seattle_csv_async()
+		seattle: await seattle_csv_async(),
+		totals: getTotals()
 	};
 }

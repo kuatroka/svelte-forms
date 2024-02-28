@@ -2,6 +2,7 @@
   "name": "observableplot-playground",
   "version": "0.0.1",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^4.0.1",
     "@sveltejs/kit": "^2.0.0",
