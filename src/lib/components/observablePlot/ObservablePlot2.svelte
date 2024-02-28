@@ -2,7 +2,8 @@
     import * as Plot from "@observablehq/plot";
     import { type PlotOptions } from '@observablehq/plot';
   
-    export let options: PlotOptions = {};
+    export let options:  {};
+    // export let options: PlotOptions = {};
 
     function myplot(node: HTMLElement) {
         node.appendChild(Plot.plot(options));

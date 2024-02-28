@@ -31,7 +31,7 @@ function randomDate(startYear, endYear) {
         const year = quarterEndDate.getFullYear();
         const month = quarterEndDate.getMonth() + 1; // getMonth() returns 0-11, so we add 1
         const quarter = Math.ceil(month / 3); // Calculate the quarter
-        const cik = faker.number.int({ min: 1000000, max: 9999999 });
+        const cik = faker.string.numeric({ length: 6 });
         const combination = `${cik}-${year}Q${quarter}`;
 
         if (!uniqueCombinations.has(combination)) {

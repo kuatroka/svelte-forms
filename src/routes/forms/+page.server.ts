@@ -14,15 +14,19 @@ const maxQuarter = Math.max(...tableData.map((row: any) => Number(row.quarter.re
 const maxQuarterIndex = uniqueQuartersList.indexOf(maxQuarter);
 
 export async function load({  url  }) { 
-	console.log(maxQuarter)
+	// console.log(maxQuarter)
 	
 
-	let quarter_id = url.searchParams.get('quarter_id') || maxQuarterIndex;
-	let quarter = url.searchParams.get('quarter')  || maxQuarter;
+	let quarter_id: number = parseInt(url.searchParams.get('quarter_id') || '') || maxQuarterIndex;
+	let quarter = uniqueQuartersList[quarter_id]  || maxQuarter;
 	console.log(`From +page.server.ts - var quarter_id: ${quarter_id}`);
 	console.log(`From +page.server.ts - var quarter: ${quarter}`);
 	console.log(`////////////////////////////////////////////`);
-	const rows = filteredData(tableData, quarter);
+	const rows = filteredData(tableData,
+		 quarter
+		 );
+	rows.slice(0, 3).forEach(row => console.log(`Quarter: ${row.quarter}, Cik: ${row.cik}, Value: ${row.value}`));
+	// console.log(`${rows.slice(0, 2)}`);
 
 
 	return {
