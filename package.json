@@ -42,6 +42,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@duckdb/duckdb-wasm": "1.28.1-dev106.0",
     "@observablehq/inputs": "^0.10.6",
     "@observablehq/plot": "^0.6.13",
     "@observablehq/runtime": "^5.9.7",

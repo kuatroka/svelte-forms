@@ -24,11 +24,11 @@
 	Observable
 	</a>
 
-	<a  href="/echarts"
+	<a  href="/api_learning"
 		class:text-primary={isActive('/')}
 		class="text-sm font-medium transition-colors hover:text-primary {isActive('/echarts') ? '' : 'text-muted-foreground'}"
 	>
-	eCharts
+	api_learning
 	</a>
 
 

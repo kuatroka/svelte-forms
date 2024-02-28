@@ -20,6 +20,8 @@ export async function load({  url  }) {
 	// console.log(`From +page.server.ts - var quarter: ${quarter_print},  'rows' from DB'- ${rows[0].quarter}` );
 
 	return {
-		rows
+		rows,
+		quarter_id,
+		quarter,
 	};
 }
