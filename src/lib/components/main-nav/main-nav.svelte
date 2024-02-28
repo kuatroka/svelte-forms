@@ -17,12 +17,6 @@
 		Home
 	</a>
 
-	<a  href="/observable"
-		class:text-primary={isActive('/')}
-		class="text-sm font-medium transition-colors hover:text-primary {isActive('/observable') ? '' : 'text-muted-foreground'}"
-	>
-	Observable
-	</a>
 
 	<a  href="/api_learning"
 		class:text-primary={isActive('/')}
