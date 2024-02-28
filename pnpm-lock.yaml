@@ -23,9 +23,6 @@ dependencies:
   '@types/d3':
     specifier: ^7.4.3
     version: 7.4.3
-  apache-arrow:
-    specifier: ^15.0.0
-    version: 15.0.0
   aws-sdk:
     specifier: ^2.1564.0
     version: 2.1566.0
@@ -892,16 +889,8 @@ packages:
     resolution: {integrity: sha512-UuKzKpJJ/Ief6ufIaIzr3A/0XnluX7RvFgwkV89Yzvm77wCh1kFaFmqN8XEnGcN62EuHdedQjEMb8mYxFLGPyA==}
     dev: false
 
-  /@types/command-line-args@5.2.3:
-    resolution: {integrity: sha512-uv0aG6R0Y8WHZLTamZwtfsDLVRnOa+n+n5rEvFWL5Na5gZ8V2Teab/duDPFzIIIhs9qizDpcavCusCLJZu62Kw==}
-    dev: false
-
   /@types/command-line-usage@5.0.2:
     resolution: {integrity: sha512-n7RlEEJ+4x4TS7ZQddTmNSxP+zziEG0TNsMfiRIxcIVXt71ENJ9ojeXmGO3wPoTdn7pJcU2xc3CJYMktNT6DPg==}
-    dev: false
-
-  /@types/command-line-usage@5.0.4:
-    resolution: {integrity: sha512-BwR5KP3Es/CSht0xqBcUXS3qCAUVXwpRKsV2+arxeb65atasuXG9LykC9Ab10Cw3s2raH92ZqOeILaQbsB2ACg==}
     dev: false
 
   /@types/cookie@0.6.0:
@@ -1344,21 +1333,6 @@ packages:
       flatbuffers: 23.5.26
       json-bignum: 0.0.3
       pad-left: 2.1.0
-      tslib: 2.6.2
-    dev: false
-
-  /apache-arrow@15.0.0:
-    resolution: {integrity: sha512-e6aunxNKM+woQf137ny3tp/xbLjFJS2oGQxQhYGqW6dGeIwNV1jOeEAeR6sS2jwAI2qLO83gYIP2MBz02Gw5Xw==}
-    hasBin: true
-    dependencies:
-      '@swc/helpers': 0.5.6
-      '@types/command-line-args': 5.2.3
-      '@types/command-line-usage': 5.0.4
-      '@types/node': 20.11.17
-      command-line-args: 5.2.1
-      command-line-usage: 7.0.1
-      flatbuffers: 23.5.26
-      json-bignum: 0.0.3
       tslib: 2.6.2
     dev: false
 
