@@ -5,29 +5,30 @@ const filteredData = (tableData: any[], quarter?: string) => {
 	return quarter === undefined ? tableData : tableData.filter((row: any) => row.quarter === quarter);
 }
 
+const uniqueQuarters = new Set(tableData.map(row => row.quarter));
+const uniqueQuartersList = Array.from(uniqueQuarters).sort();
+
+// console.log(uniqueQuartersList)
+
 const maxQuarter = Math.max(...tableData.map((row: any) => Number(row.quarter.replace('Q', '')))).toString().replace(/^(\d{4})/, '$1Q');
+const maxQuarterIndex = uniqueQuartersList.indexOf(maxQuarter);
 
-export async function load({  url  }) {
-	// depends('slider:quarter');	 
+export async function load({  url  }) { 
 	console.log(maxQuarter)
+	
 
-	let quarter_id = url.searchParams.get('quarter_id');
+	let quarter_id = url.searchParams.get('quarter_id') || maxQuarterIndex;
 	let quarter = url.searchParams.get('quarter')  || maxQuarter;
 	console.log(`From +page.server.ts - var quarter_id: ${quarter_id}`);
 	console.log(`From +page.server.ts - var quarter: ${quarter}`);
 	console.log(`////////////////////////////////////////////`);
-	// if (quarter === undefined) quarter = '';
-
-	// let quarter_print = quarter;
-	// if (quarter_print === undefined) quarter_print = 'UNEFINED';
-	// if (quarter_print === "") quarter_print = 'EMPTY';
-
 	const rows = filteredData(tableData, quarter);
-	// console.log(`From +page.server.ts - var quarter: ${quarter_print},  'rows' from DB'- ${rows[0].quarter}` );
+
 
 	return {
 		rows,
 		quarter_id,
 		quarter,
+		quarters: uniqueQuartersList
 	};
 }

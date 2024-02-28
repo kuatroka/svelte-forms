@@ -1,18 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import debounce from 'debounce';
   import { goto } from '$app/navigation';
-  import { writable } from 'svelte/store';
   import { page } from '$app/stores';
 
   export let data;
 
-  $: ({quarter, rows } = data)
-$: quarters = rows.map(d => d.quarter);
+  $: ({quarters, quarter, rows } = data)
 
-  // let quarters = data.rows.map(d => d.quarter);
-
-  $: id_param = writable($page.url.searchParams.get('quarter_id'));
+  $: quarter_id = $page.url.searchParams.get('quarter_id') || quarters.indexOf(quarter);
   
   const updateQueryString = (name: string, value: string | number) => {
         const params = new URLSearchParams(window.location.search);
@@ -21,79 +16,26 @@ $: quarters = rows.map(d => d.quarter);
         };
 
         // Debounced version of updateQueryString for 'id' parameter
-    const debouncedUpdateId = debounce((idValue: string) => {
-        updateQueryString('quarter_id', idValue);
+  const debouncedUpdateId = debounce((quarter_index: string) => {
+        updateQueryString('quarter_id', quarter_index)
+    }, 200); // Adjust debounce delay as needed
+
+  const debouncedUpdateValue = debounce((quarter_index: string) => {
+        updateQueryString('quarter', quarters[Number(quarter_index)]);
     }, 200); // Adjust debounce delay as needed
   
-  // Initialize the slider value and quarter value based on the data
-  // onMount(() => {
-  //   if (quarters.length >  0) {
-  //     let quarter_id = Number($page.url.searchParams.get('quarter_id') || quarters.length - 1);
-  //     let quarter = $page.url.searchParams.get('quarter')?.toString() ||  quarters[quarter_id];
-  //     sliderValue.set(quarter_id || quarters.length - 1); // Set initial slider value
-  //     quarterValue.set(quarter || quarters[quarters.length - 1]); // Set initial quarter value
-  //   }
-  // });
-
-
-  /// Function to update the slider value and quarter value
-    // const updateSlider = (event: Event) => {
-    //     const newSliderValue = parseInt((event.target as HTMLInputElement).value);
-    //     sliderValue.set(newSliderValue);
-    //     quarterValue.set(quarters[newSliderValue]);
-    //     const params = new URLSearchParams(window.location.search);
-    //     params.set('quarter',quarters[newSliderValue] );
-    //     params.set('quarter_id',newSliderValue.toString() );
-    //     goto(`?${params.toString()}`);
-    // };
-  
-    // let dataset: any[] = [];
-    // let dataset: any[] = data.rows.map(entry => ({
-    //   date: new Date(entry.quarter_end_date),
-    //   quarter: entry.quarter,
-    //   value: entry.ttl_value_all_ciks_per_qtr,
-    //   value_cons: entry.mean_curr_twrr_all_ciks_per_qtr_cons,
-    //   value_yahoo: entry.mean_curr_twrr_all_ciks_per_qtr_yahoo
-    // }));
-    
-  //    console.log(quarters.slice(0, 6))
-    // $: quarter_id = Number($page.url.searchParams.get('quarter_id') || quarters.length - 1);
-    // $: quarter = $page.url.searchParams.get('quarter')?.toString() ||  quarters[quarter_id];
-
-
-  //   const updateQueryQuarterId = (name: string, value: string) => {
-  //     const params = new URLSearchParams(window.location.search);
-  //     params.set(name, value);
-  //     goto(`?${params.toString()}`);
-  //     };
-
-      // const updateQueryQuarterValue = (name: string, value: string) => {
-      // const params = new URLSearchParams(window.location.search);
-      // params.set(name, value);
-      // goto(`?${params.toString()}`);
-      // };
-
-  //     // Debounced version of updateQueryString for 'id' parameter
-  //   const debouncedUpdateQuarterId = debounce((quarterId: string) => {
-  //     updateQueryQuarterId('quarter_id', quarterId);
-  // }, 100); // Adjust debounce delay as needed
-
-  // Debounced version of updateQueryString for 'quarterValue' parameter
-  //   const debouncedUpdateQuarterValue = debounce((quarterId: string) => {
-  //     updateQueryQuarterValue('quarter', quarters[Number(quarterId)]);
-  // }, 100); // Adjust debounce delay as needed
-
-
 
 
 </script>
 <input type="range" 
 min="0" 
 max={quarters.length -  1} 
-bind:value={$id_param}
-on:input={(x) => debouncedUpdateId(x.currentTarget.value)}
+value={quarter_id}
+on:input={(x) => {debouncedUpdateId(x.currentTarget.value);
+                  debouncedUpdateValue(x.currentTarget.value);}}
 />
-<p>Current Quarter: {$id_param}</p>
+<p>quarter_id: {quarter_id}</p>
+<p>quarter: {quarter}</p>
 
 
 quarters: {quarters.slice(0, 6)} <br>
@@ -117,7 +59,7 @@ quarter: {quarter} <br> -->
   <br>
   {quarter_id}
 </div> -->
-<!-- bind:value={$id_param} -->
+<!-- bind:value={$quarter_id} -->
 
 
 
