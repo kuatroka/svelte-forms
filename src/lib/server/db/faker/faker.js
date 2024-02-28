@@ -22,7 +22,7 @@ function randomDate(startYear, endYear) {
  * @param {number} numEntries - The number of entries to generate.
  */
   // Function to generate table data
-  function generateTableData(numEntries) {
+  export function generateTableData(numEntries) {
     const data = [];
     const uniqueCombinations = new Set();
 
@@ -52,7 +52,7 @@ function randomDate(startYear, endYear) {
 }
 
   // Generate and display data
-const tableData = generateTableData(1000);
-console.table(tableData.slice(0, 5));
+export const tableData = generateTableData(1000);
+// console.table(tableData.slice(0, 2));
 // console.log(tableData.slice(0, 5));
-console.log(tableData.length);
+// console.log(tableData.length);
