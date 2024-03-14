@@ -340,4 +340,12 @@
 </div>
 
 
+<style>
+:global(input[type="search"]::-webkit-search-cancel-button) {	
+  /* opacity: 1; */
+  padding: 1px;
+}
+
+</style>
+
 <!-- #TODO: Server side search and paginatin mostly work, but needs refinement. Sort is not implemented yet at all -->
