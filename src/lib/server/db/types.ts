@@ -37,10 +37,14 @@ export type Cik = {
 	id: number;
 	cik: string;
 	cik_name: string;
-	cum_twrr_cons: number;
 	cum_twrr_yahoo: number;
+	qtr_return_yahoo: number;
 	value: number;
+	num_assets: number;
 	quarter: string;
+	active_from: string;
+	rank_value: number;
+	total_num_entries: number;
 };
 
 export type CikDetails = {

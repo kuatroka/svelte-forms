@@ -47,6 +47,7 @@
     "@observablehq/inputs": "^0.10.6",
     "@observablehq/plot": "^0.6.13",
     "@observablehq/runtime": "^5.9.7",
+    "@tabler/icons-svelte": "^3.0.3",
     "@types/better-sqlite3": "^7.6.9",
     "@types/d3": "^7.4.3",
     "aws-sdk": "^2.1564.0",
@@ -62,6 +63,8 @@
     "mode-watcher": "^0.2.1",
     "nock": "^13.5.3",
     "radix-icons-svelte": "^1.2.1",
+    "svelte-headless-table": "^0.18.2",
+    "svelte-radix": "^1.0.1",
     "svelte-ux": "^0.60.1",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.2.0"

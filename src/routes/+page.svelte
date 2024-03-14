@@ -2,7 +2,7 @@
     <div>
 
         <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            Charting Playground
+            Learning Forms and Actions
         </h1>
         
         <p class="leading-7 [&:not(:first-child)]:mt-6">

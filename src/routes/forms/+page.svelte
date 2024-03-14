@@ -65,6 +65,16 @@ quarters: {quarters.slice(0, 6)} <br>
   </div>
 </div>
 
+<br>
+
+<form >
+    <input type="range" name="quarter_id"
+    min="0" 
+max={quarters.length -  1} 
+bind:value={quarter_id}
+on:change={e=>e.currentTarget.form?.requestSubmit()} />
+</form>
+
 
 
 
