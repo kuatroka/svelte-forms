@@ -1,6 +1,6 @@
 // import { tableData } from '$lib/server/db/faker/faker';
 
-import tableData from '$lib/data/tableData.json';
+import tableData from './static/data/tableData.json';
 console.log('tableData', tableData.slice(0, 2));
 
 interface TableDataItem {

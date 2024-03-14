@@ -66,7 +66,7 @@ export const tableData = generateTableData(1000);
 // console.log(tableData.slice(0, 5));
 // console.log(tableData.length);
 
-const filePath = path.join('./src/lib/data', 'tableData.json');
+const filePath = path.join('./static/data', 'tableData.json');
 fs.writeFile(filePath, JSON.stringify(tableData, null, 2), (err) => {
 	if (err) throw err;
 	console.log('Data written to tableData.json');
