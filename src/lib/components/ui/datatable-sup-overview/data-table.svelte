@@ -102,18 +102,18 @@
 		
 
 		
-		// table.column({
-		// 	header: "",
-		// 	accessor: ({ cik }) => cik,
-		// 	cell: (item) => {
-		// 		return createRender(Actions, { id: item.value });
-		// 	},
-		// 	plugins: {
-		// 		sort: {
-		// 			disable: true
-		// 		}
-		// 	},
-		// }),
+		table.column({
+			header: "",
+			accessor: ({ cik }) => cik,
+			cell: (item) => {
+				return createRender(Actions, { id: item.value });
+			},
+			plugins: {
+				sort: {
+					disable: true
+				}
+			},
+		}),
 	]);
 
 	const {

@@ -2,7 +2,8 @@
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import { Button } from "$lib/components/ui/button";
     // import MdiDotsHorizontal from '~icons/mdi/dots-horizontal'
-    // import { IconDots } from '@tabler/icons-svelte';
+    import { IconDots } from '@tabler/icons-svelte';
+    
     export let id: string;
   </script>
   <DropdownMenu.Root >
@@ -11,10 +12,11 @@
         variant="ghost"
         builders={[builder]}
         size="icon"
-        class="relative w-8 h-8 p-0"
+        class="relative w-4 h-4 p-0"
       >
         <span class="sr-only">Open menu</span>
-        <!-- <IconDots class="w-4 h-4" /> -->
+        <!-- <iconify-icon icon="mdi:dots-horizontal" class="w-4 h-4"></iconify-icon> -->
+        <IconDots class="w-4 h-4" />
       </Button>
     </DropdownMenu.Trigger>
     <DropdownMenu.Content>

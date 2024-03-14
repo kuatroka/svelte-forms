@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.pcss';
+	import 'iconify-icon';
 
 	import { ModeWatcher } from "mode-watcher";
 	import { Button } from "$lib/components/ui/button";
