@@ -57,7 +57,7 @@
 		
 
 		table.column({ header: "Investor",
-					 accessor: "cik_name",
+					accessor: "cik_name",
 			cell: ({ value }) => {
 				return value.toUpperCase();
 			}}),
@@ -102,18 +102,19 @@
 		
 
 		
-		table.column({
-			header: "",
-			accessor: ({ cik }) => cik,
-			cell: (item) => {
-				return createRender(Actions, { id: item.value });
-			},
-			plugins: {
-				sort: {
-					disable: true
-				}
-			},
-		}),
+		// table.column({
+		// 	header: "",
+		// 	accessor: ({ cik }) => cik,
+		// 	cell: (item) => {
+		// 		return createRender(Actions, { id: item.value });
+		// 	},
+		// 	plugins: {
+		// 		sort: {
+		// 			disable: true
+		// 		}
+		// 	},
+		// }),
+
 	]);
 
 	const {
@@ -148,6 +149,7 @@
 	$: limit_param = Number($page.url.searchParams.get('limit') || 0);
 
 	$: filter = q || '';
+	$: filter, $pageIndex = 0;
 	$: $pageSize =  limit_param || 7;
 	$: $pageIndex = (skip_param / limit_param) || 0;
 

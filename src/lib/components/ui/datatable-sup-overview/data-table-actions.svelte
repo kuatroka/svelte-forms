@@ -1,8 +1,7 @@
 <script lang="ts">
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import { Button } from "$lib/components/ui/button";
-    // import MdiDotsHorizontal from '~icons/mdi/dots-horizontal'
-    import { IconDots } from '@tabler/icons-svelte';
+    
     
     export let id: string;
   </script>
@@ -15,8 +14,7 @@
         class="relative w-4 h-4 p-0"
       >
         <span class="sr-only">Open menu</span>
-        <!-- <iconify-icon icon="mdi:dots-horizontal" class="w-4 h-4"></iconify-icon> -->
-        <IconDots class="w-4 h-4" />
+        <iconify-icon icon="heroicons:ellipsis-horizontal-16-solid" class="w-4 h-4"></iconify-icon>
       </Button>
     </DropdownMenu.Trigger>
     <DropdownMenu.Content>

@@ -17,9 +17,6 @@ dependencies:
   '@observablehq/runtime':
     specifier: ^5.9.7
     version: 5.9.7
-  '@tabler/icons-svelte':
-    specifier: ^3.0.3
-    version: 3.0.3(svelte@4.2.10)
   '@types/better-sqlite3':
     specifier: ^7.6.9
     version: 7.6.9
@@ -884,19 +881,6 @@ packages:
     resolution: {integrity: sha512-aYX01Ke9hunpoCexYAgQucEpARGQ5w/cqHFrIR+e9gdKb1QWTsVJuTJ2ozQzIAxLyRQe/m+2RqzkyOOGiMKRQA==}
     dependencies:
       tslib: 2.6.2
-    dev: false
-
-  /@tabler/icons-svelte@3.0.3(svelte@4.2.10):
-    resolution: {integrity: sha512-c+AnSZsHpfHMH7ffnsGNsSHvjAyUVdEkcL/pIVLsxggrlJlrxbv6lAsTeSrDsGiDH5f1jGDkMblC00iHlgDtcg==}
-    peerDependencies:
-      svelte: '>=3 <5'
-    dependencies:
-      '@tabler/icons': 3.0.3
-      svelte: 4.2.10
-    dev: false
-
-  /@tabler/icons@3.0.3:
-    resolution: {integrity: sha512-jcumpc/BqyAitWVzgZ0GgDmA915h4RbWIALcSEWbzdxEZRSMmuJdUPEoPZayUd57x374viFSCkwk0CMuMQFeJw==}
     dev: false
 
   /@types/better-sqlite3@7.6.9:
