@@ -318,7 +318,8 @@
 			on:click={() => {if ($pageIndex > 0) {
 				$pageIndex = $pageIndex - 1;};
 							handleFilterChange();}}
-			disabled={!_hasPreviousPage}>Previous</Button>
+			disabled={!_hasPreviousPage}>Previous
+		</Button>
 		<div class="flex text-sm text-muted-foreground">
 			{$pageIndex + 1} of {_totalPages} Pages			
 		<!-- <span> {$pageIndex + 1} out of {$pageCount}</span> -->
