@@ -14,10 +14,12 @@
 	import * as Table from "$lib/components/ui/table";
 	import  Actions  from "./data-table-actions.svelte";
 	import { Button } from "$lib/components/ui/button";
-	import { CaretSort, ChevronDown, ChevronUp } from "radix-icons-svelte";
+	import { Badge } from "$lib/components/ui/badge";
+	import { CaretSort, CaretDown, CaretUp, ChevronDown, ChevronUp } from "radix-icons-svelte";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import { Input } from "$lib/components/ui/input";
 	import { easeBack } from "d3";
+	import { Value } from "svelte-radix";
 
 
 	export let order_by: string = "";
@@ -57,10 +59,16 @@
 		
 
 		table.column({ header: "Investor",
-					accessor: "cik_name",
-			cell: ({ value }) => {
-				return value.toUpperCase();
-			}}),
+						accessor: "cik_name",
+						cell: ({ value }) => {
+							return value.toUpperCase();
+						},	
+						plugins: {
+				resize: {
+					minWidth: 40
+				 },
+				},
+			}),
 
 		
 
@@ -86,7 +94,7 @@
 			header: "Value",
 			accessor: "value",
 			cell: ({ value }) => {
-				const formatted = format(value/100, "percent");
+				const formatted = format(value, "metric", { maximumSignificantDigits: 3 });
 				return formatted;
 			},	
 				}),
@@ -178,6 +186,19 @@
 		{  replaceState: true, keepFocus: true });
   }, 200);
 
+  function formatCellText(text: string): string {
+        const maxLength = 30;
+        let formattedText = text;
+
+        if (text.length > maxLength) {
+            formattedText = text.substring(0, maxLength - 1) + '…'; // Truncate and add ellipsis
+        } else if (text.length < maxLength) {
+            formattedText = text.padEnd(maxLength, ' '); // Pad with spaces
+        }
+
+        return formattedText;
+    }
+
 
 </script>
 <!-- <pre> {JSON.stringify(filtered_num_entries, null, 2)}</pre>
@@ -216,42 +237,42 @@
 		</DropdownMenu.Root>
 	</div>
 	<div class="rounded-md border">
-		<Table.Root {...$tableAttrs}>
-			<Table.Header>
+		<Table.Root {...$tableAttrs} >
+			<Table.Header >
 				{#each $headerRows as headerRow}
-					<Subscribe rowAttrs={headerRow.attrs()}>
-						<Table.Row>
+					<Subscribe 		rowAttrs={headerRow.attrs()}
+									>
+						<!-- {rowProps.resize} -->
+						<Table.Row class="table-fixed">
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe
 									attrs={cell.attrs()}
 									let:attrs
 									props={cell.props()}
-									let:props
+									let:props									
 								>
+							<!-- {rowProps.resize} -->
 								<!-- class="max-w-[14ch]" -->
 								<!-- class="w-1/7" -->
-								<Table.Head 
-									{...attrs}
-									>
-										{#if props.sort.disabled}
-											<Render of={cell.render()} />
-										{:else}
-										<Button variant="ghost" on:click={(e) => {
+								<Table.Head {...attrs}>
+									{#if props.sort.disabled}
+										<Render of={cell.render()} />
+									{:else}
+										<Button variant="ghost" class="-ml-5 h-8 data-[state=open]:bg-accent" on:click={(e) => {
 											props.sort.toggle(e);
 											handleFilterChange();
 										}}>
-											<Render of={cell.render()} />
-											
 											{#if props.sort.order === 'asc'}
-												<ChevronUp class="ml-2 h-4 w-4" />
+												<CaretUp class="mr-1 h-4 w-4" />
 											{:else if props.sort.order === 'desc'}
-												<ChevronDown class="ml-2 h-4 w-4" />
-												{:else}
-												<CaretSort class="ml-2 h-4 w-4" />
+												<CaretDown class="mr-1 h-4 w-4" />
+											{:else}
+												<CaretSort class="mr-1 h-4 w-4" />
 											{/if}
+											<Render of={cell.render()} />
 										</Button>
-										{/if}
-									</Table.Head>
+									{/if}
+								</Table.Head>
 								</Subscribe>
 							{/each}
 						</Table.Row>
@@ -265,29 +286,29 @@
 						<Table.Row
 							{...rowAttrs}
 							data-state={$selectedDataIds[row.id] && "selected"}
-						>
+							>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell 
-										{...attrs}
-									
-									>
+									<Table.Cell {...attrs}>
                                     {#if cell.id === 'cik_name'}
                                     <!-- <a href="/{row.cells[0].id}"  -->
                                         <!-- // the below works but extremely inneficient -->
                                         <!-- <a href="/{data.find(d => d.cik_name === cell.value)?.cik}" -->
                                         <!-- <a href="/{row.cells.find(c => c.id === 'cik')?.value}"   -->
-                                            <a href="/superinvestors/{row.original.cik}"
-                                            >{truncate(cell.value, 22).toUpperCase()}</a>
+											<a href="/superinvestors/{row.original.cik}" class="hover:underline min-w-[30ch] max-w-[30ch] truncate">											
+                                            {truncate(cell.value, 30)}
+											<!-- <Render of={cell.render()} /> -->
+											<!-- {cell.render()} -->
+										</a>
 
 									{:else if ['cum_twrr_yahoo', 'qtr_return_yahoo', 'cum_twrr_cons'].includes(cell.id)}
-											<div class:text-center={cell.render()} class:text-green-500={cell.value > 0} class:text-red-500={cell.value <= 0}>
+											<div class:text-start={cell.render()} class:text-green-500={cell.value > 0} class:text-red-500={cell.value <= 0} >
 												{cell.render()}
 												<!-- <Render of={cell.render()} /> -->
 											</div>
 
-											{:else if [ 'value', 'num_assets', 'cik', 'cum_twrr_yahoo', 'qtr_return_yahoo', 'cum_twrr_cons'].includes(cell.id)}
-											<div class="text-center">{cell.render()}
+											{:else if [ 'value', 'num_assets', 'cik'].includes(cell.id)}
+											<div class="text-start">{cell.render()}
 											</div>
 												
                                     {:else}

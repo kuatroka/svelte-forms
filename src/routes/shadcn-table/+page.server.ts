@@ -57,8 +57,8 @@ export const load = async ({ url }) => {
 	const limit = Number(url.searchParams.get('limit')) || 7;
 	const skip = Number(url.searchParams.get('skip')) || 0;
 	const q = url.searchParams.get('q')?.toString() || '';
-	const order_by = url.searchParams.get('order_by')?.toString() || 'id';
-	const order_dir = url.searchParams.get('order_dir')?.toString() || 'asc';
+	const order_by = url.searchParams.get('order_by')?.toString() || 'cum_twrr_yahoo';
+	const order_dir = url.searchParams.get('order_dir')?.toString() || 'desc';
 
 	// Generate function to filter, sort, and paginate tableData
 
